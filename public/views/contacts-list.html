@@ -1,0 +1,37 @@
+<div class="contacts-list">
+	
+	<header class="contacts-list-header">
+		
+		<a href="#contact/new" class="button contacts-list-header__add-btn">
+			Add Contact
+		</a>
+
+		<button class="button contacts-list-header__delete-btn" ng-disabled="selectedContacts == 0" ng-click="deleteSelected( )">
+			Delete Selected
+		</button>
+
+	</header>
+
+
+	<section class="contacts-list-container">
+
+		<div
+		class="contacts-list-item"
+		ng-repeat="contact in contacts">
+			<div class="contacts-list-item__select">
+				<input type="checkbox" ng-model="contact.selected" ng-click="toggleSelectContact( contact )" />
+			</div>
+
+			<a href="#/contact/{{contact.id}}" class="contacts-list-item__info">
+				{{ contact.name }} {{ contact.lastname }}
+			</a>
+
+			<div style="clear: both;"></div>
+		</div>
+
+		<p ng-show="!contacts || contacts.length == 0">Press add contact to start</p>
+
+	</section>
+
+
+</div>

@@ -1,0 +1,79 @@
+<div class="contacts-detail">
+	
+	<section class="contacts-detail-container">
+
+		<h2>{{ ( state == 'update' ) ? "Update contact" : "Add contact" }}</h2>
+
+		<a class="button" href="#/">Back</a>
+
+		<form
+		class="contacts-detail-form"
+		ng-submit="saveContact( )"
+		novalidate
+		name="contact_form">
+			
+			<label
+			class="contacts-detail-field"
+			style="display: block;"
+			ng-class="{ 'error': ( contact_form.$submitted || contact_form.name.$touched ) && contact_form.name.$error.required }">
+				<input name="name" ng-model="contact.name" placeholder="Name" required />
+				<span ng-show="( contact_form.$submitted || contact_form.name.$touched ) && contact_form.name.$error.required">The field is required</span>
+			</label>
+
+			<label
+			class="contacts-detail-field"
+			style="display: block;"
+			ng-class="{ 'error': ( contact_form.$submitted || contact_form.lastname.$touched ) && contact_form.lastname.$error.required }">
+				<input name="lastname" ng-model="contact.lastname" placeholder="Last Name" required />
+				<span ng-show="( contact_form.$submitted || contact_form.lastname.$touched ) && contact_form.lastname.$error.required">The field is required</span>
+			</label>
+
+			<label
+			class="contacts-detail-field"
+			style="display: block;"
+			ng-class="{ 'error': ( contact_form.$submitted || contact_form.email.$touched ) && contact_form.email.$error.required }">
+				<input name="email" type="email" ng-model="contact.email" placeholder="Email" required />
+				<span ng-show="( contact_form.$submitted || contact_form.email.$touched ) && contact_form.email.$error.required">The field is required</span>
+				<span ng-show="( contact_form.$submitted || contact_form.email.$touched ) && contact_form.email.$error.email">The field must have valid email format</span>
+			</label>
+
+			<label
+			class="contacts-detail-field"
+			style="display: block;"
+			ng-class="{ 'error': ( contact_form.$submitted || contact_form.address.$touched ) && contact_form.address.$error.required }">
+				<input name="address" ng-model="contact.address" placeholder="Address" required />
+				<span ng-show="( contact_form.$submitted || contact_form.address.$touched ) && contact_form.address.$error.required">The field is required</span>
+			</label>
+
+			<label
+			class="contacts-detail-field"
+			style="display: block;"
+			ng-class="{ 'error': ( contact_form.$submitted || contact_form.city.$touched ) && contact_form.city.$error.required }">
+				<input name="city" ng-model="contact.city" placeholder="City" required />
+				<span ng-show="( contact_form.$submitted || contact_form.city.$touched ) && contact_form.city.$error.required">The field is required</span>
+			</label>
+			
+			<label
+			class="contacts-detail-field"
+			style="display: block;"
+			ng-class="{ 'error': ( contact_form.$submitted || contact_form.zipcode.$touched ) && contact_form.zipcode.$error.required }">
+				<input name="zipcode" ng-model="contact.zipcode" placeholder="Zip-code" required />
+				<span ng-show="( contact_form.$submitted || contact_form.zipcode.$touched ) && contact_form.zipcode.$error.required">The field is required</span>
+			</label>
+
+			<label
+			class="contacts-detail-field"
+			style="display: block;"
+			ng-class="{ 'error': ( contact_form.$submitted || contact_form.country.$touched ) && contact_form.country.$error.required }">
+				<input name="country" ng-model="contact.country" placeholder="Country" required />
+				<span ng-show="( contact_form.$submitted || contact_form.country.$touched ) && contact_form.country.$error.required">The field is required</span>
+			</label>
+
+
+			<input class="button" type="submit" value="Save" />
+		</form>
+
+	</section>
+
+
+</div>

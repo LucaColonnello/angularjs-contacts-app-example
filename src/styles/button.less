@@ -1,0 +1,29 @@
+.button {
+display: inline-block;
+padding: 5px 10px;
+background: #e0e0e0;
+border: 1px solid #ccc;
+border-radius: 3px;
+color: #333;
+text-decoration: none;
+cursor: pointer;
+
+	&[disabled] {
+	color: #999;
+	background: #eee;
+
+		&:hover {
+		color: #999;
+		background: #eee; }
+
+	}
+
+	&:active {
+	color: #444;
+	background: #c1c1c1; }
+
+	&:hover {
+	color: #777;
+	background: #ddd; }
+
+}

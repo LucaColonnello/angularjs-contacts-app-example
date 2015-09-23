@@ -1,5 +1,5 @@
 # angularjs-contacts-app-example
-Example of a COntacts App with AngularJS using Flux Pattern
+Example of a Contacts App with AngularJS using Flux Pattern
 
 ## Demo
 http://angularjs-contacts-app-example.herokuapp.com/

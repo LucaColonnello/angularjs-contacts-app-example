@@ -13,7 +13,7 @@ http://angularjs-contacts-app-example.herokuapp.com/
 
 ### Build Prod
 
-`webpack -p`
+`NODE_ENV=production webpack`
 
 ### Run
 

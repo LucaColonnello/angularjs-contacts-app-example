@@ -8,43 +8,55 @@ var AUTOPREFIXER_LOADER = 'autoprefixer-loader?{browsers:[' +
 
 // webpack sets the NODE_ENV when calling it with -p or -d
 if(!process.env.NODE_ENV) {
-    process.env.NODE_ENV = 'development';
+	process.env.NODE_ENV = 'development';
 }
 
-var webpackConfig = {
-    cache: true,
-    entry: "./src/index.js",
-    output: {
-        path: path.join(__dirname, "public"),
-        filename: "app.js"
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: { stage: 0 }
-            },
-            {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract( 'style-loader', 'css-loader!' + AUTOPREFIXER_LOADER )
-            },
-            {
-                test: /\.less$/,
-                loader: ExtractTextPlugin.extract( 'style-loader', 'css-loader!' + AUTOPREFIXER_LOADER + '!less' )
-            }
-        ]
-    },
-    plugins: [
-      new ExtractTextPlugin('style.css', { allChunks: true })
-    ],
+// set up plugins
+var plugins = [ ];
+plugins.push( new ExtractTextPlugin( 'style.css', { allChunks: true } ) );
 
-    resolve: {
-        root: __dirname,
-        modulesDirectories: ["node_modules", "bower_components"],
-        extensions: ['', '.js', '.jsx']
-    }
+
+// insert production plugins
+if( process.env.NODE_ENV != 'development' ) {
+	plugins.push( new webpack.optimize.UglifyJsPlugin( {
+		sourceMap: false,
+		mangle: false
+	} ) );
+}
+
+
+var webpackConfig = {
+	cache: true,
+	entry: "./src/index.js",
+	output: {
+		path: path.join(__dirname, "public"),
+		filename: "app.js"
+	},
+	module: {
+		loaders: [
+			{
+				test: /\.jsx?$/,
+				exclude: /node_modules/,
+				loader: 'babel-loader',
+				query: { stage: 0 }
+			},
+			{
+				test: /\.css$/,
+				loader: ExtractTextPlugin.extract( 'style-loader', 'css-loader!' + AUTOPREFIXER_LOADER )
+			},
+			{
+				test: /\.less$/,
+				loader: ExtractTextPlugin.extract( 'style-loader', 'css-loader!' + AUTOPREFIXER_LOADER + '!less' )
+			}
+		]
+	},
+	plugins: plugins,
+
+	resolve: {
+		root: __dirname,
+		modulesDirectories: ["node_modules", "bower_components"],
+		extensions: ['', '.js', '.jsx']
+	}
 };
 
 
